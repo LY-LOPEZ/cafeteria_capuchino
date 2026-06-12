@@ -23,16 +23,8 @@ function renderOrderActionsControl($order, $current_page) {
 
    ?>
    <div class="order-action-summary">
-      <div class="action-status-card">
-         <span>Pago</span>
-         <strong><?= htmlspecialchars($paymentStatus, ENT_QUOTES, 'UTF-8'); ?></strong>
-      </div>
-      <div class="action-status-card">
-         <span>Pedido</span>
-         <strong><?= htmlspecialchars($orderStatus, ENT_QUOTES, 'UTF-8'); ?></strong>
-      </div>
       <button type="button" class="manage-order-btn js-order-open" data-modal-target="<?= $modalId; ?>">
-         <i class="fas fa-sliders-h"></i> gestionar
+         <i class="fas fa-sliders-h"></i> Gestionar
       </button>
    </div>
 

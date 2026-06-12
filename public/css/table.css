@@ -274,11 +274,41 @@ td img {
 
 .order-actions-cell {
 	background: #fff;
-	box-shadow: -1rem 0 2rem rgba(55, 38, 24, .08);
-	min-width: 360px;
+	box-shadow: -0.6rem 0 1.4rem rgba(55, 38, 24, .06);
+	min-width: 150px;
 	position: sticky;
 	right: 0;
 	z-index: 2;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.order-action-summary {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	min-width: 12rem;
+}
+
+.manage-order-btn {
+	align-items: center;
+	background: #5c341f;
+	border: none;
+	border-radius: 999px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 13px;
+	font-weight: 800;
+	gap: 7px;
+	justify-content: center;
+	min-height: 38px;
+	padding: 9px 15px;
+	white-space: nowrap;
+}
+
+.manage-order-btn:hover {
+	background: #9a6a3a;
 }
 
 .order-action-form {
@@ -466,4 +496,3 @@ td img {
     max-height: 70vh;
     object-fit: contain;
 }
-

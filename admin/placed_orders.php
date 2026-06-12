@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 include '../components/connect.php';
 include '../components/order_workflow.php';
@@ -59,30 +59,31 @@ if ($order_search !== '') {
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    <link rel="stylesheet" href="../public/css/dashboard_style.css">
-   <link rel="stylesheet" href="../public/css/table.css">
+   <link rel="stylesheet" href="../public/css/table.css?v=20260612-actions">
+   <?php include '../components/tailwind_head.php'; ?>
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
 
    <?php include '../components/admin_header.php'; ?>
 
-   <section class="placed-orders orders-management">
+   <section class="placed-orders orders-management tw-mx-auto tw-max-w-[1500px] tw-px-6 tw-py-12">
 
-      <h1 class="heading">pedidos realizados</h1>
+      <h1 class="heading tw-mb-8 tw-text-center tw-text-4xl tw-font-bold tw-text-coffee-900">pedidos realizados</h1>
 
-      <div class="table_header orders-toolbar">
-         <p>Detalles del Pedido</p>
-         <form action="" method="GET" class="orders-search">
-            <input type="number" min="1" name="order_id" value="<?= htmlspecialchars($order_search, ENT_QUOTES, 'UTF-8'); ?>" placeholder="numero de pedido">
-            <button class="add_new" type="submit"><i class="fas fa-search"></i> buscar</button>
+      <div class="table_header orders-toolbar tw-mb-5 tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4 tw-rounded-lg tw-bg-white tw-p-5 tw-shadow-cafe">
+         <p class="tw-text-3xl tw-font-bold tw-text-coffee-900">Detalles del Pedido</p>
+         <form action="" method="GET" class="orders-search tw-flex tw-flex-wrap tw-gap-3">
+            <input class="tw-rounded-md tw-border tw-border-coffee-700/15 tw-bg-coffee-50 tw-px-4 tw-py-3 tw-text-xl" type="number" min="1" name="order_id" value="<?= htmlspecialchars($order_search, ENT_QUOTES, 'UTF-8'); ?>" placeholder="numero de pedido">
+            <button class="add_new tw-rounded-md tw-bg-coffee-700 tw-px-5 tw-py-3 tw-text-xl tw-font-bold tw-text-white" type="submit"><i class="fas fa-search"></i> buscar</button>
             <?php if ($order_search !== '') { ?>
-               <a href="<?= $current_page; ?>" class="clear-search">limpiar</a>
+               <a href="<?= $current_page; ?>" class="clear-search tw-rounded-md tw-bg-coffee-100 tw-px-5 tw-py-3 tw-text-xl tw-font-bold tw-text-coffee-900">limpiar</a>
             <?php } ?>
          </form>
       </div>
 
-      <div class="orders-table-wrapper">
-         <table class="table">
+      <div class="orders-table-wrapper tw-overflow-x-auto tw-rounded-lg tw-bg-white tw-p-4 tw-shadow-cafe">
+         <table class="table tw-w-full">
             <thead>
                <tr>
                   <th>ID</th>
@@ -141,3 +142,4 @@ if ($order_search !== '') {
 </body>
 
 </html>
+

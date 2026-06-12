@@ -8,10 +8,11 @@
    <title>pedidos</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style.css?v=20260612-orders2">
+   <?php include 'components/tailwind_head.php'; ?>
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
 
    <?php include 'components/user_header.php'; ?>
 
@@ -20,10 +21,10 @@
       <p><a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'home' : 'home.php'; ?>">inicio</a> <span> / pedidos</span></p>
    </div>
 
-   <section class="orders">
+   <section class="orders customer-orders">
       <h1 class="title">tus pedidos</h1>
 
-      <div class="box-container">
+      <div class="box-container customer-orders-grid">
          <?php if (!empty($orders)) { ?>
             <?php foreach ($orders as $fetch_orders) { ?>
                <?php
@@ -35,17 +36,34 @@
                      $current_step = -1;
                   }
                ?>
-               <div class="box">
-                  <p>realizado el : <span><?= $fetch_orders['placed_on']; ?></span></p>
-                  <p>nombre : <span><?= $fetch_orders['name']; ?></span></p>
-                  <p>correo : <span><?= $fetch_orders['email']; ?></span></p>
-                  <p>numero : <span><?= $fetch_orders['number']; ?></span></p>
-                  <p>direccion : <span><?= $fetch_orders['address']; ?></span></p>
-                  <p>metodo de pago : <span><?= $fetch_orders['method']; ?></span></p>
-                  <p>tus pedidos : <span><?= $fetch_orders['total_products']; ?></span></p>
-                  <p>precio total : <span>Bs.<?= $fetch_orders['total_price']; ?>/-</span></p>
-                  <p>estado del pago : <span style="color:<?= ($fetch_orders['payment_status'] == 'pending') ? 'red' : (($fetch_orders['payment_status'] == 'rejected') ? 'red' : 'green'); ?>"><?= $fetch_orders['payment_status']; ?></span></p>
-                  <p>estado del pedido : <span><?= $order_status; ?></span></p>
+               <article class="box customer-order-card">
+                  <div class="customer-order-head">
+                     <div>
+                        <span class="order-kicker">Pedido #<?= $fetch_orders['id']; ?></span>
+                        <h3><?= $fetch_orders['total_products']; ?></h3>
+                        <p>Realizado el <?= $fetch_orders['placed_on']; ?></p>
+                     </div>
+                     <div class="order-total-pill">Bs.<?= $fetch_orders['total_price']; ?></div>
+                  </div>
+
+                  <div class="customer-order-meta">
+                     <div><span>Cliente</span><strong><?= $fetch_orders['name']; ?></strong></div>
+                     <div><span>Correo</span><strong><?= $fetch_orders['email']; ?></strong></div>
+                     <div><span>Número</span><strong><?= $fetch_orders['number']; ?></strong></div>
+                     <div><span>Método de pago</span><strong><?= $fetch_orders['method']; ?></strong></div>
+                     <div class="wide"><span>Dirección</span><strong><?= $fetch_orders['address']; ?></strong></div>
+                  </div>
+
+                  <div class="customer-order-status">
+                     <div>
+                        <span>Estado del pago</span>
+                        <strong class="<?= $fetch_orders['payment_status'] == 'completed' ? 'is-ok' : 'is-alert'; ?>"><?= $fetch_orders['payment_status']; ?></strong>
+                     </div>
+                     <div>
+                        <span>Estado del pedido</span>
+                        <strong><?= $order_status; ?></strong>
+                     </div>
+                  </div>
 
                   <?php if ($is_payment_approved) { ?>
                      <div class="order-tracker <?= $order_status == 'cancelado' ? 'cancelled' : ''; ?>">
@@ -60,7 +78,7 @@
                      <p class="empty">tu pedido esta pendiente de verificacion del pago QR</p>
                   <?php } ?>
 
-                  <div class="order-actions">
+                  <div class="order-actions customer-order-actions">
                      <?php if ($is_delivered) { ?>
                         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'invoice' : 'invoice.php'; ?>?id=<?= $fetch_orders['id']; ?>" class="btn">ver factura</a>
                         <form action="" method="post">
@@ -71,7 +89,7 @@
                         <span class="btn disabled">factura al entregar</span>
                      <?php } ?>
                   </div>
-               </div>
+               </article>
             <?php } ?>
          <?php } else { ?>
             <p class="empty">aun no hay pedidos realizados</p>

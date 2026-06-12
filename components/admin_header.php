@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (isset($message)) {
    foreach ($message as $message) {
       echo '
@@ -11,7 +11,7 @@ if (isset($message)) {
 }
 ?>
 
-<header class="header">
+<header class="header panel-shell-header">
 
    <section class="flex">
 
@@ -40,9 +40,10 @@ if (isset($message)) {
          ?>
          <p><?= $fetch_profile['name']; ?></p>
          <a href="update_profile.php" class="btn">actualizar perfil</a>
-         <a href="../components/admin_logout.php" onclick="return confirm('¿cerrar sesión en este sitio web?');" class="delete-btn">salir</a>
+         <a href="../components/admin_logout.php" onclick="return confirm('&iquest;cerrar sesi&oacute;n en este sitio web?');" class="delete-btn">salir</a>
       </div>
 
    </section>
 
 </header>
+

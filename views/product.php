@@ -8,10 +8,11 @@
    <title>productos</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style.css?v=20260612">
+   <?php include 'components/tailwind_head.php'; ?>
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
 
    <?php include 'components/user_header.php'; ?>
 
@@ -20,27 +21,13 @@
       <p><a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'home' : 'home.php'; ?>">inicio</a> <span> / productos</span></p>
    </div>
 
-   <section class="products">
-      <h1 class="title">productos disponibles</h1>
+   <section class="products tw-mx-auto tw-max-w-[1280px] tw-px-6 tw-py-14">
+      <h1 class="title tw-font-sans tw-text-5xl tw-normal-case tw-text-coffee-900">productos disponibles</h1>
 
-      <div class="box-container">
+      <div class="box-container tw-grid tw-grid-cols-1 tw-gap-8 sm:tw-grid-cols-2 lg:tw-grid-cols-4">
          <?php if (!empty($products)) { ?>
             <?php foreach ($products as $fetch_products) { ?>
-               <form action="" method="post" class="box">
-                  <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-                  <input type="hidden" name="name" value="<?= $fetch_products['name']; ?>">
-                  <input type="hidden" name="price" value="<?= $fetch_products['price']; ?>">
-                  <input type="hidden" name="image" value="<?= $fetch_products['image']; ?>">
-                  <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'quick_view' : 'quick_view.php'; ?>?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
-                  <?php renderCartAction($user_id); ?>
-                  <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-                  <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'category' : 'category.php'; ?>?category=<?= $fetch_products['category']; ?>" class="cat"><?= $fetch_products['category']; ?></a>
-                  <div class="name"><?= $fetch_products['name']; ?></div>
-                  <div class="flex">
-                     <div class="price"><span>Bs.</span><?= $fetch_products['price']; ?></div>
-                     <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
-                  </div>
-               </form>
+               <?php include 'components/product_card.php'; ?>
             <?php } ?>
          <?php } else { ?>
             <p class="empty">aun no se han anadido productos</p>
@@ -50,7 +37,7 @@
 
    <?php include 'components/footer.php'; ?>
 
-   <script src="js/script.js"></script>
+   <script src="js/script.js?v=20260612"></script>
 </body>
 
 </html>

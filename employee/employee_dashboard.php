@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 include '../components/connect.php';
 
@@ -27,35 +27,36 @@ if (!isset($employee_id)) {
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../public/css/nav.css">
    <link rel="stylesheet" href="../public/css/dashboard_style.css">
+   <?php include '../components/tailwind_head.php'; ?>
 
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
 
    <?php include '../components/employee_header.php' ?>
 
    <!-- employee dashboard section starts  -->
    <div class="container">
 
-      <section class="dashboard">
+      <section class="dashboard tw-px-6 tw-py-8">
 
-         <h1 class="heading" style="text-align: center; margin-top:3rem">PANEL </h1>
+         <h1 class="heading tw-mb-8 tw-text-center tw-text-4xl tw-font-bold tw-text-coffee-900" style="text-align: center; margin-top:3rem">PANEL </h1>
          <section class="dashboard">
 
-            <div class="box-container">
+            <div class="box-container tw-mx-auto tw-max-w-3xl">
 
-               <div class="box">
-                  <h3>¡bienvenido!</h3>
-                  <p><?= $fetch_profile['name']; ?></p>
+               <div class="box tw-rounded-lg tw-bg-white tw-p-8 tw-text-center tw-shadow-cafe">
+                  <h3 class="tw-text-3xl tw-font-bold tw-text-coffee-900">Â¡bienvenido!</h3>
+                  <p class="tw-mt-3 tw-text-2xl tw-text-coffee-700"><?= $fetch_profile['name']; ?></p>
 
                </div>
 
             </div>
 
          </section>
-         <div class="cardBox">
+         <div class="cardBox tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-5">
 
-            <div class="card">
+            <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                <?php
                $select_orders = $conn->prepare("SELECT * FROM `orders`");
                $select_orders->execute();
@@ -73,7 +74,7 @@ if (!isset($employee_id)) {
                </div>
             </div>
 
-            <div class="card">
+            <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                <?php
                $total_pendings = 0;
                $select_pendings = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
@@ -94,7 +95,7 @@ if (!isset($employee_id)) {
                </div>
             </div>
 
-            <div class="card">
+            <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                <?php
                $total_completes = 0;
                $select_completes = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
@@ -115,7 +116,7 @@ if (!isset($employee_id)) {
                </div>
             </div>
 
-            <div class="card">
+            <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                <?php
                $select_orders = $conn->prepare("SELECT * FROM `orders`");
                $select_orders->execute();
@@ -133,7 +134,7 @@ if (!isset($employee_id)) {
                </div>
             </div>
 
-            <div class="card">
+            <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                <?php
                $select_products = $conn->prepare("SELECT * FROM `products`");
                $select_products->execute();
@@ -141,7 +142,7 @@ if (!isset($employee_id)) {
                ?>
                <div>
                   <div class="numbers"><?= $numbers_of_products; ?></div>
-                  <div class="cardName">productos añadidos</div>
+                  <div class="cardName">productos aÃ±adidos</div>
                </div>
 
                <div class="iconBx">

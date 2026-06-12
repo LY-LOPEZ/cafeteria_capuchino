@@ -59,7 +59,7 @@ if ($order_search !== '') {
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    <link rel="stylesheet" href="../public/css/dashboard_style.css">
-   <link rel="stylesheet" href="../public/css/table.css">
+   <link rel="stylesheet" href="../public/css/table.css?v=20260612-actions">
 </head>
 
 <body>

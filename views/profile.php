@@ -8,28 +8,31 @@
    <title>perfil</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style.css?v=20260612">
+   <?php include 'components/tailwind_head.php'; ?>
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
 
    <?php include 'components/user_header.php'; ?>
 
-   <section class="user-details">
-      <div class="user">
-         <img src="images/user-icon.png" alt="">
-         <p><i class="fas fa-user"></i><span><span><?= $fetch_profile['name']; ?></span></span></p>
-         <p><i class="fas fa-phone"></i><span><?= $fetch_profile['number']; ?></span></p>
-         <p><i class="fas fa-envelope"></i><span><?= $fetch_profile['email']; ?></span></p>
-         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'update_profile' : 'update_profile.php'; ?>" class="btn">actualizar informacion</a>
-         <p class="address"><i class="fas fa-map-marker-alt"></i><span><?php if ($fetch_profile['address'] == '') { echo 'por favor ingresa tu direccion'; } else { echo $fetch_profile['address']; } ?></span></p>
-         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'update_address' : 'update_address.php'; ?>" class="btn">actualizar direccion</a>
+   <section class="user-details tw-mx-auto tw-max-w-4xl tw-px-6 tw-py-16">
+      <div class="user tw-rounded-lg tw-bg-white tw-p-8 tw-text-center tw-shadow-cafe">
+         <img class="tw-mx-auto tw-h-36 tw-w-36 tw-rounded-full tw-bg-coffee-50 tw-object-contain tw-p-5" src="images/user-icon.png" alt="">
+         <div class="tw-mt-8 tw-grid tw-gap-4 tw-text-left">
+            <p class="tw-rounded-md tw-bg-coffee-50 tw-p-5 tw-text-2xl"><i class="fas fa-user tw-mr-3 tw-text-coffee-700"></i><span><span><?= $fetch_profile['name']; ?></span></span></p>
+            <p class="tw-rounded-md tw-bg-coffee-50 tw-p-5 tw-text-2xl"><i class="fas fa-phone tw-mr-3 tw-text-coffee-700"></i><span><?= $fetch_profile['number']; ?></span></p>
+            <p class="tw-rounded-md tw-bg-coffee-50 tw-p-5 tw-text-2xl"><i class="fas fa-envelope tw-mr-3 tw-text-coffee-700"></i><span><?= $fetch_profile['email']; ?></span></p>
+         </div>
+         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'update_profile' : 'update_profile.php'; ?>" class="btn tw-mt-6 tw-inline-flex tw-rounded-md tw-px-8 tw-py-4 tw-text-xl tw-font-bold">actualizar informacion</a>
+         <p class="address tw-mt-8 tw-rounded-md tw-bg-coffee-50 tw-p-5 tw-text-left tw-text-2xl"><i class="fas fa-map-marker-alt tw-mr-3 tw-text-coffee-700"></i><span><?php if ($fetch_profile['address'] == '') { echo 'por favor ingresa tu direccion'; } else { echo $fetch_profile['address']; } ?></span></p>
+         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'update_address' : 'update_address.php'; ?>" class="btn tw-mt-6 tw-inline-flex tw-rounded-md tw-px-8 tw-py-4 tw-text-xl tw-font-bold">actualizar direccion</a>
       </div>
    </section>
 
    <?php include 'components/footer.php'; ?>
 
-   <script src="js/script.js"></script>
+   <script src="js/script.js?v=20260612"></script>
 </body>
 
 </html>

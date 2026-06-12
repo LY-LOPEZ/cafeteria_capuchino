@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 include '../components/connect.php';
 
@@ -38,21 +38,22 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
+    <title>Panel de AdministraciÃ³n</title>
 
     <link rel="stylesheet" href="../public/css/nav.css">
+    <?php include '../components/tailwind_head.php'; ?>
 
 
 </head>
 
-<body>
+<body class="tw-bg-coffee-50 tw-font-sans tw-text-coffee-900">
     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
-                        <img style="width: 80px;" src="../public/images/08052021-05_generated-removebg-preview.png" alt="Cafe Shop 😋">
-                        <P style="font-size: 1.8rem; margin-top: 1.2rem;"><span class="title">Cafe Shop 😋</span></P>
+                        <img style="width: 80px;" src="../public/images/08052021-05_generated-removebg-preview.png" alt="Cafe Shop ðŸ˜‹">
+                        <P style="font-size: 1.8rem; margin-top: 1.2rem;"><span class="title">Cafe Shop ðŸ˜‹</span></P>
 
                     </a>
 
@@ -122,10 +123,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </li>
 
                 <li>
-                    <a href="../components/admin_logout.php" onclick="return confirm('¿cerrar sesión en este sitio web?');" class="delete-btn"><span class="icon">
+                    <a href="../components/admin_logout.php" onclick="return confirm('Â¿cerrar sesiÃ³n en este sitio web?');" class="delete-btn"><span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
-                        <span class="title">Cerrar Sesión</span></a>
+                        <span class="title">Cerrar SesiÃ³n</span></a>
                 </li>
             </ul>
         </div>
@@ -141,7 +142,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </a>
 
                 <div class="">
-                    <p>¡Bienvenido! <?= $fetch_profile['name']; ?></p>
+                    <p>Â¡Bienvenido! <?= $fetch_profile['name']; ?></p>
                     <div class="icons">
                         <div id="user-btn" class="fas fa-user"></div>
                     </div>
@@ -150,13 +151,13 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 
             </div>
 
-            <section class="dashboard">
+            <section class="dashboard tw-px-6 tw-py-8">
 
-                <h1 class="heading" style="text-align: center; margin-top:3rem">PANEL </h1>
+                <h1 class="heading tw-mb-8 tw-text-center tw-text-4xl tw-font-bold tw-text-coffee-900" style="text-align: center; margin-top:3rem">PANEL </h1>
 
-                <div class="cardBox">
+                <div class="cardBox tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-4">
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $total_pendings = 0;
                         $select_pendings = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
@@ -177,7 +178,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $total_completes = 0;
                         $select_completes = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
@@ -198,7 +199,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_orders = $conn->prepare("SELECT * FROM `orders`");
                         $select_orders->execute();
@@ -216,7 +217,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_products = $conn->prepare("SELECT * FROM `products`");
                         $select_products->execute();
@@ -224,7 +225,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <div>
                             <div class="numbers"><?= $numbers_of_products; ?></div>
-                            <div class="cardName">productos añadidos</div>
+                            <div class="cardName">productos aÃ±adidos</div>
                         </div>
 
                         <div class="iconBx">
@@ -234,7 +235,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_users = $conn->prepare("SELECT * FROM `users`");
                         $select_users->execute();
@@ -252,7 +253,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_admins = $conn->prepare("SELECT * FROM `admin`");
                         $select_admins->execute();
@@ -270,7 +271,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_employees = $conn->prepare("SELECT * FROM `employee`");
                         $select_employees->execute();
@@ -288,7 +289,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <?php
                         $select_messages = $conn->prepare("SELECT * FROM `messages`");
                         $select_messages->execute();
@@ -307,11 +308,11 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-                <h1 class="heading" style="text-align: center;">Resumen de actividad</h1>
+                <h1 class="heading tw-my-8 tw-text-center tw-text-4xl tw-font-bold tw-text-coffee-900" style="text-align: center;">Resumen de actividad</h1>
 
-                <div class="cardBox">
+                <div class="cardBox tw-grid tw-gap-6 md:tw-grid-cols-2 xl:tw-grid-cols-4">
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <div>
                             <div class="numbers">1,504</div>
                             <div class="cardName">Vistas Diarias</div>
@@ -322,7 +323,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <div>
                             <div class="numbers">80</div>
                             <div class="cardName">Ventas</div>
@@ -333,10 +334,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <div>
                             <div class="numbers">284</div>
-                            <div class="cardName">Calificación</div>
+                            <div class="cardName">CalificaciÃ³n</div>
                         </div>
 
                         <div class="iconBx">
@@ -344,7 +345,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card tw-rounded-lg tw-bg-white tw-p-6 tw-shadow-cafe">
                         <div>
                             <div class="numbers">$7,842</div>
                             <div class="cardName">Ganancias</div>
@@ -366,3 +367,4 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 </body>
 
 </html>
+
