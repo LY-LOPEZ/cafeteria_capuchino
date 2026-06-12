@@ -36,8 +36,8 @@ if (isset($_GET['delete'])) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/dashboard_style.css">
-   <link rel="stylesheet" href="../css/table.css">
+   <link rel="stylesheet" href="../public/css/dashboard_style.css">
+   <link rel="stylesheet" href="../public/css/table.css">
 
 </head>
 
@@ -100,7 +100,7 @@ if (isset($_GET['delete'])) {
    <!-- user accounts section ends -->
 
    <!-- custom js file link  -->
-   <script src="../js/admin_script.js"></script>
+   <script src="../public/js/admin_script.js"></script>
 
 </body>
 

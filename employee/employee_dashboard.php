@@ -1,4 +1,4 @@
-ï»¿<?php
+<?php
 
 include '../components/connect.php';
 
@@ -25,8 +25,8 @@ if (!isset($employee_id)) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/nav.css">
-   <link rel="stylesheet" href="../css/dashboard_style.css">
+   <link rel="stylesheet" href="../public/css/nav.css">
+   <link rel="stylesheet" href="../public/css/dashboard_style.css">
 
 </head>
 
@@ -45,7 +45,7 @@ if (!isset($employee_id)) {
             <div class="box-container">
 
                <div class="box">
-                  <h3>Â¡bienvenido!</h3>
+                  <h3>¡bienvenido!</h3>
                   <p><?= $fetch_profile['name']; ?></p>
 
                </div>
@@ -141,7 +141,7 @@ if (!isset($employee_id)) {
                ?>
                <div>
                   <div class="numbers"><?= $numbers_of_products; ?></div>
-                  <div class="cardName">productos aÃ±adidos</div>
+                  <div class="cardName">productos añadidos</div>
                </div>
 
                <div class="iconBx">
@@ -159,8 +159,8 @@ if (!isset($employee_id)) {
    <!-- employee dashboard section ends -->
 
    <!-- custom js file link  -->
-   <script src="../js/employee_script.js"></script>
-   <script src="../js/nav.js"></script>
+   <script src="../public/js/employee_script.js"></script>
+   <script src="../public/js/nav.js"></script>
 
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

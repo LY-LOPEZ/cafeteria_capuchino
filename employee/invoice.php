@@ -1,6 +1,7 @@
 <?php
 
 include '../components/connect.php';
+include '../components/asset_url.php';
 
 session_start();
 
@@ -39,7 +40,7 @@ $select_items->execute([$fetch_order['id']]);
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Factura #<?= $fetch_order['id']; ?></title>
-   <link rel="stylesheet" href="../css/invoice.css">
+   <link rel="stylesheet" href="../public/css/invoice.css">
 </head>
 
 <body>
@@ -71,7 +72,7 @@ $select_items->execute([$fetch_order['id']]);
             <p><strong>Método de pago:</strong> <?= $fetch_order['method']; ?></p>
             <p><strong>Referencia QR:</strong> <?= $fetch_order['payment_reference']; ?></p>
             <?php if ($fetch_order['payment_proof'] != '') { ?>
-               <p><strong>Comprobante:</strong> <a href="../uploaded_img/<?= $fetch_order['payment_proof']; ?>" target="_blank">ver imagen</a></p>
+               <p><strong>Comprobante:</strong> <a href="<?= publicAssetUrl('uploaded_img/' . $fetch_order['payment_proof']); ?>" target="_blank">ver imagen</a></p>
             <?php } ?>
             <p><strong>Estado:</strong> <?= $fetch_order['payment_status']; ?></p>
             <p><strong>Seguimiento:</strong> <?= $fetch_order['order_status']; ?></p>

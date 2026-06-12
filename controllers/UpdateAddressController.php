@@ -1,5 +1,6 @@
 <?php
 require_once 'models/UserModel.php';
+require_once 'components/auth.php';
 
 class UpdateAddressController {
     public function index() {
@@ -9,13 +10,7 @@ class UpdateAddressController {
             session_start();
         }
 
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-        } else {
-            $homeUrl = defined('PUBLIC_BASE') ? PUBLIC_BASE . 'home' : 'home.php';
-            header('location:' . $homeUrl);
-            exit;
-        }
+        $user_id = requireUser($conn);
 
         $userModel = new UserModel();
         $fetch_profile = $userModel->getById($user_id);
@@ -43,8 +38,10 @@ class UpdateAddressController {
                 'nit_ci' => $nit_ci,
             ]);
 
-            $message[] = 'datos guardados correctamente';
-            $fetch_profile = $userModel->getById($user_id);
+            $_SESSION['message'][] = 'datos guardados correctamente';
+            $checkoutUrl = defined('PUBLIC_BASE') ? PUBLIC_BASE . 'checkout' : 'checkout.php';
+            header('location:' . $checkoutUrl);
+            exit;
         }
 
         require_once 'views/update_address.php';

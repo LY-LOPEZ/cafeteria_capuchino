@@ -5,41 +5,41 @@ Sistema web para una cafeteria en Sucre, Bolivia. Permite a clientes revisar pro
 ## Tecnologias
 
 - PHP
-- MySQL
+- MySQL / MariaDB
 - XAMPP
 - HTML, CSS y JavaScript
 
-## Arquitectura actual
+## Arquitectura
 
 ```text
-Cafe-Shop-Management-System/
-├── public/          # Entrada web y recursos publicos
-│   ├── css/
-│   ├── js/
-│   ├── images/
-│   ├── uploaded_img/
-│   └── index.php    # Front Controller
-├── controllers/     # Logica de las paginas del cliente
-├── models/          # Acceso a base de datos
-├── views/           # Vistas PHP/HTML del cliente
-├── components/      # Header, footer y partes reutilizables
-├── admin/           # Panel de administrador
-├── employee/        # Panel de empleado
-└── index.php        # Redirige a public/
+Cafe-Shop-Limpio/
+|-- public/          # Entrada web y recursos publicos
+|   |-- css/
+|   |-- js/
+|   |-- images/
+|   |-- uploaded_img/
+|   `-- index.php    # Front Controller
+|-- controllers/     # Logica de las paginas del cliente
+|-- models/          # Acceso a base de datos
+|-- views/           # Vistas PHP/HTML del cliente
+|-- components/      # Header, footer y partes reutilizables
+|-- admin/           # Panel de administrador
+|-- employee/        # Panel de empleado
+`-- index.php        # Redirige a public/
 ```
 
-Los archivos PHP antiguos de la raiz, como `home.php`, `menu.php` o `cart.php`, quedaron como redirecciones hacia `public/` para mantener compatibilidad.
+La raiz redirige automaticamente hacia `public/`.
 
 ## Rutas principales
 
-- Cliente: `http://localhost/ECO/Cafe-Shop-Management-System/public/home`
-- Menu: `http://localhost/ECO/Cafe-Shop-Management-System/public/menu`
-- Productos: `http://localhost/ECO/Cafe-Shop-Management-System/public/product`
-- Carrito: `http://localhost/ECO/Cafe-Shop-Management-System/public/cart`
-- Pedidos: `http://localhost/ECO/Cafe-Shop-Management-System/public/orders`
-- Login cliente: `http://localhost/ECO/Cafe-Shop-Management-System/public/login`
-- Admin: `http://localhost/ECO/Cafe-Shop-Management-System/admin/admin_login.php`
-- Empleado: `http://localhost/ECO/Cafe-Shop-Management-System/employee/employee_login.php`
+- Cliente: `http://localhost/ECO/Cafe-Shop-Limpio/public/home`
+- Menu: `http://localhost/ECO/Cafe-Shop-Limpio/public/menu`
+- Productos: `http://localhost/ECO/Cafe-Shop-Limpio/public/product`
+- Carrito: `http://localhost/ECO/Cafe-Shop-Limpio/public/cart`
+- Pedidos: `http://localhost/ECO/Cafe-Shop-Limpio/public/orders`
+- Login cliente: `http://localhost/ECO/Cafe-Shop-Limpio/public/login`
+- Admin: `http://localhost/ECO/Cafe-Shop-Limpio/admin/admin_login.php`
+- Empleado: `http://localhost/ECO/Cafe-Shop-Limpio/employee/employee_login.php`
 
 ## Funciones del cliente
 
@@ -47,7 +47,7 @@ Los archivos PHP antiguos de la raiz, como `home.php`, `menu.php` o `cart.php`, 
 - Catalogo de productos.
 - Busqueda de productos.
 - Vista rapida de producto.
-- Carrito de compras.
+- Carrito de compras protegido por login.
 - Checkout con pago por QR.
 - Registro de referencia y comprobante QR.
 - Confirmacion de pedido.
@@ -83,7 +83,9 @@ Archivo SQL principal:
 food_db.sql
 ```
 
-Tablas importantes:
+El archivo `food_db.sql` crea la base `food_db`, las tablas necesarias y datos demo minimos. Las tablas operativas `cart`, `orders`, `order_items` y `messages` quedan vacias para evitar datos de prueba al clonar.
+
+Tablas principales:
 
 - `users`
 - `products`
@@ -92,20 +94,24 @@ Tablas importantes:
 - `order_items`
 - `messages`
 - `admin`
-- `employees`
+- `employee`
+
+Credenciales demo despues de importar:
+
+- Admin: usuario `admin`, contrasena `admin`
+- Empleado: usuario `empleado1`, contrasena `empleado`
+- Cliente: correo `cliente@example.com`, contrasena `admin`
 
 ## Ejecutar en XAMPP
 
 1. Abrir XAMPP.
 2. Iniciar Apache y MySQL.
-3. Crear/importar la base de datos `food_db` en phpMyAdmin.
-4. Importar `food_db.sql`.
+3. Clonar/copiar el proyecto en `C:\xampp\htdocs\ECO\Cafe-Shop-Limpio`.
+4. Importar `food_db.sql` desde phpMyAdmin o con MySQL.
 5. Abrir:
 
 ```text
-http://localhost/ECO/Cafe-Shop-Management-System/
+http://localhost/ECO/Cafe-Shop-Limpio/
 ```
 
 El sistema redirige automaticamente a `public/`.
-
-

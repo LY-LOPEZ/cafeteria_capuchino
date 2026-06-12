@@ -2,6 +2,7 @@
 require_once 'models/CartModel.php';
 require_once 'models/OrderModel.php';
 require_once 'models/UserModel.php';
+require_once 'components/auth.php';
 
 class CheckoutController {
     public function index() {
@@ -11,13 +12,7 @@ class CheckoutController {
             session_start();
         }
 
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-        } else {
-            $homeUrl = defined('PUBLIC_BASE') ? PUBLIC_BASE . 'home' : 'home.php';
-            header('location:' . $homeUrl);
-            exit;
-        }
+        $user_id = requireUser($conn);
 
         $cartModel = new CartModel();
         $userModel = new UserModel();
@@ -31,16 +26,16 @@ class CheckoutController {
         if (isset($_POST['submit'])) {
             if (empty($cartItems)) {
                 $message[] = 'tu carrito esta vacio';
-            } elseif (!$fetch_profile || $fetch_profile['address'] == '') {
+            } elseif (!$fetch_profile || !$this->hasValue($fetch_profile['address'] ?? '')) {
                 $message[] = 'por favor anade tu direccion';
             } elseif (
-                $fetch_profile['city'] == '' ||
-                $fetch_profile['zone'] == '' ||
-                $fetch_profile['street'] == '' ||
-                $fetch_profile['home_number'] == '' ||
-                $fetch_profile['delivery_reference'] == '' ||
-                $fetch_profile['billing_name'] == '' ||
-                $fetch_profile['nit_ci'] == ''
+                !$this->hasValue($fetch_profile['city'] ?? '') ||
+                !$this->hasValue($fetch_profile['zone'] ?? '') ||
+                !$this->hasValue($fetch_profile['street'] ?? '') ||
+                !$this->hasValue($fetch_profile['home_number'] ?? '') ||
+                !$this->hasValue($fetch_profile['delivery_reference'] ?? '') ||
+                !$this->hasValue($fetch_profile['billing_name'] ?? '') ||
+                !$this->hasValue($fetch_profile['nit_ci'] ?? '')
             ) {
                 $message[] = 'por favor completa tus datos de entrega y factura';
             } else {
@@ -90,9 +85,13 @@ class CheckoutController {
         require_once 'views/checkout.php';
     }
 
+    private function hasValue($value) {
+        return trim((string)$value) !== '';
+    }
+
     private function handlePaymentProofUpload() {
         if (!isset($_FILES['payment_proof']) || $_FILES['payment_proof']['name'] == '') {
-            return ['valid' => true, 'filename' => '', 'message' => ''];
+            return ['valid' => false, 'filename' => '', 'message' => 'por favor sube la imagen del comprobante QR'];
         }
 
         $originalName = filter_var($_FILES['payment_proof']['name'], FILTER_SANITIZE_STRING);
@@ -105,8 +104,10 @@ class CheckoutController {
         }
 
         $filename = 'qr_pago_' . uniqid() . '.' . $extension;
-        $folder = 'uploaded_img/' . $filename;
-        move_uploaded_file($_FILES['payment_proof']['tmp_name'], $folder);
+        $folder = 'public/uploaded_img/' . $filename;
+        if (!move_uploaded_file($_FILES['payment_proof']['tmp_name'], $folder)) {
+            return ['valid' => false, 'filename' => '', 'message' => 'no se pudo guardar el comprobante QR'];
+        }
 
         return ['valid' => true, 'filename' => $filename, 'message' => ''];
     }

@@ -40,7 +40,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
 
-    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../public/css/nav.css">
 
 
 </head>
@@ -51,7 +51,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
             <ul>
                 <li>
                     <a href="#">
-                        <img style="width: 80px;" src="../images/08052021-05_generated-removebg-preview.png" alt="Cafe Shop 😋">
+                        <img style="width: 80px;" src="../public/images/08052021-05_generated-removebg-preview.png" alt="Cafe Shop 😋">
                         <P style="font-size: 1.8rem; margin-top: 1.2rem;"><span class="title">Cafe Shop 😋</span></P>
 
                     </a>
@@ -359,7 +359,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     </div>
     </div>
 
-    <script src="../js/nav.js"></script>
+    <script src="../public/js/nav.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

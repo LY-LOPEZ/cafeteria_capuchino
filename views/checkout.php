@@ -22,6 +22,19 @@
 
    <section class="checkout">
       <h1 class="title">resumen del pedido</h1>
+      <?php
+         $hasField = function ($value) {
+            return trim((string)$value) !== '';
+         };
+         $hasCompleteDeliveryData = $hasField($fetch_profile['address'] ?? '')
+            && $hasField($fetch_profile['city'] ?? '')
+            && $hasField($fetch_profile['zone'] ?? '')
+            && $hasField($fetch_profile['street'] ?? '')
+            && $hasField($fetch_profile['home_number'] ?? '')
+            && $hasField($fetch_profile['delivery_reference'] ?? '')
+            && $hasField($fetch_profile['billing_name'] ?? '')
+            && $hasField($fetch_profile['nit_ci'] ?? '');
+      ?>
 
       <form action="" method="post" enctype="multipart/form-data">
          <div class="cart-items">
@@ -68,8 +81,12 @@
             </div>
 
             <input type="text" name="payment_reference" class="box" required maxlength="100" placeholder="referencia o numero de comprobante QR">
-            <input type="file" name="payment_proof" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
-            <input type="submit" value="realizar pedido" class="btn checkout-submit <?php if (($fetch_profile['address'] ?? '') == '') { echo 'disabled'; } ?>" name="submit">
+            <input type="file" name="payment_proof" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+            <?php if ($hasCompleteDeliveryData) { ?>
+               <input type="submit" value="realizar pedido" class="btn checkout-submit" name="submit">
+            <?php } else { ?>
+               <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'update_address' : 'update_address.php'; ?>" class="btn checkout-submit">completar direccion</a>
+            <?php } ?>
          </div>
       </form>
    </section>

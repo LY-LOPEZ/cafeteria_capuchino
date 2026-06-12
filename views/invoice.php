@@ -1,3 +1,4 @@
+<?php include 'components/asset_url.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,7 +39,7 @@
             <p><strong>Metodo de pago:</strong> <?= $fetch_order['method']; ?></p>
             <p><strong>Referencia QR:</strong> <?= $fetch_order['payment_reference']; ?></p>
             <?php if ($fetch_order['payment_proof'] != '') { ?>
-               <p><strong>Comprobante:</strong> <a href="uploaded_img/<?= $fetch_order['payment_proof']; ?>" target="_blank">ver imagen</a></p>
+               <p><strong>Comprobante:</strong> <a href="<?= publicAssetUrl('uploaded_img/' . $fetch_order['payment_proof']); ?>" target="_blank">ver imagen</a></p>
             <?php } ?>
             <p><strong>Estado:</strong> <?= $fetch_order['payment_status']; ?></p>
             <p><strong>Seguimiento:</strong> <?= $fetch_order['order_status']; ?></p>

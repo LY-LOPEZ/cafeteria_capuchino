@@ -1,24 +1,30 @@
-navbar = document.querySelector('.header .flex .navbar');
+const navbar = document.querySelector('.header .flex .navbar');
+const profile = document.querySelector('.header .flex .profile');
+const menuBtn = document.querySelector('#menu-btn');
+const userBtn = document.querySelector('#user-btn');
 
-document.querySelector('#menu-btn').onclick = () =>{
-   navbar.classList.toggle('active');
-   profile.classList.remove('active');
+if (menuBtn && navbar && profile) {
+   menuBtn.onclick = () =>{
+      navbar.classList.toggle('active');
+      profile.classList.remove('active');
+   };
 }
 
-profile = document.querySelector('.header .flex .profile');
-
-document.querySelector('#user-btn').onclick = () =>{
-   profile.classList.toggle('active');
-   navbar.classList.remove('active');
+if (userBtn && navbar && profile) {
+   userBtn.onclick = () =>{
+      profile.classList.toggle('active');
+      navbar.classList.remove('active');
+   };
 }
 
 window.onscroll = () =>{
-   navbar.classList.remove('active');
-   profile.classList.remove('active');
+   navbar?.classList.remove('active');
+   profile?.classList.remove('active');
 }
 
 function loader(){
-   document.querySelector('.loader').style.display = 'none';
+   const loaderElement = document.querySelector('.loader');
+   if (loaderElement) loaderElement.style.display = 'none';
 }
 
 function fadeOut(){

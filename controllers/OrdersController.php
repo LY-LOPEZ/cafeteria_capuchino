@@ -1,5 +1,6 @@
 <?php
 require_once 'models/OrderModel.php';
+require_once 'components/auth.php';
 
 class OrdersController {
     public function index() {
@@ -9,13 +10,7 @@ class OrdersController {
             session_start();
         }
 
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-        } else {
-            $homeUrl = defined('PUBLIC_BASE') ? PUBLIC_BASE . 'home' : 'home.php';
-            header('location:' . $homeUrl);
-            exit;
-        }
+        $user_id = requireUser($conn);
 
         $orderModel = new OrderModel();
 

@@ -31,7 +31,7 @@
                <div class="price"><span>Bs.</span><?= $product['price']; ?></div>
                <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
             </div>
-            <button type="submit" name="add_to_cart" class="cart-btn">anadir al carrito</button>
+            <?php renderCartAction($user_id, 'cart-btn', 'anadir al carrito'); ?>
          </form>
 
          <div style="padding: 0 150px; font-size: 20px;"><?= $product['desc']; ?></div>

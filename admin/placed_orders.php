@@ -2,39 +2,54 @@
 
 include '../components/connect.php';
 include '../components/order_workflow.php';
+include '../components/asset_url.php';
+include '../components/order_table_ui.php';
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['admin_id'] ?? null;
 
 if (!isset($admin_id)) {
    header('location:admin_login.php');
-};
+   exit;
+}
+
+$current_page = 'placed_orders.php';
+$order_search = filter_var($_GET['order_id'] ?? '', FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($_POST['update_payment'])) {
-
-   $order_id = $_POST['order_id'];
-   $payment_status = $_POST['payment_status'];
-   $order_status = $_POST['order_status'];
+   $order_id = filter_var($_POST['order_id'], FILTER_SANITIZE_NUMBER_INT);
+   $payment_status = filter_var($_POST['payment_status'] ?? '', FILTER_SANITIZE_STRING);
+   $order_status = filter_var($_POST['order_status'] ?? '', FILTER_SANITIZE_STRING);
    [$payment_status, $order_status] = normalize_order_workflow($payment_status, $order_status);
+
    $update_status = $conn->prepare("UPDATE `orders` SET payment_status = ?, order_status = ? WHERE id = ?");
    $update_status->execute([$payment_status, $order_status, $order_id]);
-   $message[] = '¡estado de pago actualizado!';
+   $message[] = 'estado de pago actualizado';
 }
 
 if (isset($_GET['delete'])) {
-   $delete_id = $_GET['delete'];
+   $delete_id = filter_var($_GET['delete'], FILTER_SANITIZE_NUMBER_INT);
    $delete_items = $conn->prepare("DELETE FROM `order_items` WHERE order_id = ?");
    $delete_items->execute([$delete_id]);
    $delete_order = $conn->prepare("DELETE FROM `orders` WHERE id = ?");
    $delete_order->execute([$delete_id]);
-   header('location:placed_orders.php');
+   header('location:' . $current_page);
+   exit;
+}
+
+if ($order_search !== '') {
+   $select_orders = $conn->prepare("SELECT * FROM `orders` WHERE id = ? ORDER BY id DESC");
+   $select_orders->execute([$order_search]);
+} else {
+   $select_orders = $conn->prepare("SELECT * FROM `orders` ORDER BY id DESC");
+   $select_orders->execute();
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
    <meta charset="UTF-8">
@@ -42,35 +57,31 @@ if (isset($_GET['delete'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>pedidos realizados</title>
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/dashboard_style.css">
-   <link rel="stylesheet" href="../css/table.css">
-
-
+   <link rel="stylesheet" href="../public/css/dashboard_style.css">
+   <link rel="stylesheet" href="../public/css/table.css">
 </head>
 
 <body>
 
-   <?php include '../components/admin_header.php' ?>
+   <?php include '../components/admin_header.php'; ?>
 
-   <!-- placed orders section starts  -->
-
-   <section class="placed-orders">
+   <section class="placed-orders orders-management">
 
       <h1 class="heading">pedidos realizados</h1>
 
-      <div class="table_header">
+      <div class="table_header orders-toolbar">
          <p>Detalles del Pedido</p>
-         <div>
-            <input placeholder="número de pedido">
-            <button class="add_new">buscar</button>
-         </div>
+         <form action="" method="GET" class="orders-search">
+            <input type="number" min="1" name="order_id" value="<?= htmlspecialchars($order_search, ENT_QUOTES, 'UTF-8'); ?>" placeholder="numero de pedido">
+            <button class="add_new" type="submit"><i class="fas fa-search"></i> buscar</button>
+            <?php if ($order_search !== '') { ?>
+               <a href="<?= $current_page; ?>" class="clear-search">limpiar</a>
+            <?php } ?>
+         </form>
       </div>
 
-      <div>
+      <div class="orders-table-wrapper">
          <table class="table">
             <thead>
                <tr>
@@ -78,87 +89,54 @@ if (isset($_GET['delete'])) {
                   <th>Fecha</th>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Teléfono</th>
-                  <th>Dirección</th>
-                  <th>productos</th>
+                  <th>Telefono</th>
+                  <th>Direccion</th>
+                  <th>Productos</th>
                   <th>Precio</th>
-                  <th>TipoPago</th>
-                  <th>RefPago</th>
-                  <th>EstadoPedido</th>
-                  <th>Acción</th>
+                  <th>Tipo Pago</th>
+                  <th>Ref. Pago</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
                </tr>
             </thead>
             <tbody>
-               <?php
-               $select_orders = $conn->prepare("SELECT * FROM `orders`");
-               $select_orders->execute();
-               if ($select_orders->rowCount() > 0) {
-                  while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
-               ?>
+               <?php if ($select_orders->rowCount() > 0) { ?>
+                  <?php while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) { ?>
                      <tr>
-                        <td><?= $fetch_orders['user_id']; ?></td>
-                        <td><?= $fetch_orders['placed_on']; ?></td>
-                        <td><?= $fetch_orders['name']; ?></td>
-                        <td><?= $fetch_orders['email']; ?></td>
-                        <td><?= $fetch_orders['number']; ?></span></td>
-                        <td><?= $fetch_orders['address']; ?></td>
-                        <td><?= $fetch_orders['total_products']; ?></td>
-                        <td><?= $fetch_orders['total_price']; ?></td>
-                        <td><?= $fetch_orders['method']; ?></td>
-                        <td>
-                           <?= $fetch_orders['payment_reference']; ?>
-                           <?php if ($fetch_orders['payment_proof'] != '') { ?>
-                              <br><a href="../uploaded_img/<?= $fetch_orders['payment_proof']; ?>" target="_blank">comprobante</a>
-                           <?php } ?>
+                        <td data-label="ID"><span class="order-id">#<?= $fetch_orders['id']; ?></span></td>
+                        <td data-label="Fecha"><?= $fetch_orders['placed_on']; ?></td>
+                        <td data-label="Nombre"><?= $fetch_orders['name']; ?></td>
+                        <td data-label="Correo"><?= $fetch_orders['email']; ?></td>
+                        <td data-label="Telefono"><?= $fetch_orders['number']; ?></td>
+                        <td data-label="Direccion" class="address-cell"><?= $fetch_orders['address']; ?></td>
+                        <td data-label="Productos" class="products-cell"><?= $fetch_orders['total_products']; ?></td>
+                        <td data-label="Precio"><strong>Bs. <?= $fetch_orders['total_price']; ?></strong></td>
+                        <td data-label="Tipo Pago"><?= $fetch_orders['method']; ?></td>
+                        <td data-label="Ref. Pago">
+                           <span class="payment-reference"><?= $fetch_orders['payment_reference']; ?></span>
+                           <?php renderPaymentProofControl($fetch_orders); ?>
                         </td>
-                        <td><?= $fetch_orders['order_status']; ?></td>
-                        <td>
-                           <form action="" method="POST">
-                              <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
-                              <select name="payment_status" class="drop-down">
-                                 <option value="" selected disabled><?= $fetch_orders['payment_status']; ?></option>
-                                 <option value="pending">pendiente</option>
-                                 <option value="completed">aprobado</option>
-                                 <option value="rejected">rechazado</option>
-                              </select>
-                              <select name="order_status" class="drop-down">
-                                 <option selected value="<?= $fetch_orders['order_status']; ?>"><?= $fetch_orders['order_status']; ?></option>
-                                 <option value="pendiente de verificacion">pendiente de verificacion</option>
-                                 <option value="pendiente">pendiente</option>
-                                 <option value="preparando">preparando</option>
-                                 <option value="listo">listo</option>
-                                 <option value="en camino">en camino</option>
-                                 <option value="entregado">entregado</option>
-                                 <option value="cancelado">cancelado</option>
-                              </select>
-                              <div class="flex-btn">
-                                 <input type="submit" value="actualizar" class="btn" name="update_payment">
-                                 <?php if (can_generate_invoice($fetch_orders)) { ?>
-                                    <a href="invoice.php?id=<?= $fetch_orders['id']; ?>" class="option-btn">factura</a>
-                                 <?php } ?>
-                                 <a href="placed_orders.php?delete=<?= $fetch_orders['id']; ?>" class="delete-btn" onclick="return confirm('¿eliminar este pedido?');">eliminar</a>
-                              </div>
-                           </form>
+                        <td data-label="Estado"><span class="status-pill status-<?= orderStatusClass($fetch_orders['order_status']); ?>"><?= $fetch_orders['order_status']; ?></span></td>
+                        <td data-label="Acciones" class="order-actions-cell">
+                           <?php renderOrderActionsControl($fetch_orders, $current_page); ?>
                         </td>
                      </tr>
-               <?php
-                  }
-               } else {
-                  echo '<p class="empty">¡aún no hay pedidos realizados!</p>';
-               }
-               ?>
+                  <?php } ?>
+               <?php } else { ?>
+                  <tr>
+                     <td colspan="12" class="empty-table">Aun no hay pedidos realizados.</td>
+                  </tr>
+               <?php } ?>
             </tbody>
          </table>
       </div>
 
-
-
    </section>
 
-   <!-- placed orders section ends -->
+   <?php renderOrderProofModalRoot(); ?>
 
-   <!-- custom js file link  -->
-   <script src="../js/admin_script.js"></script>
+   <script src="../public/js/admin_script.js"></script>
+   <script src="../public/js/order_modals.js"></script>
 
 </body>
 

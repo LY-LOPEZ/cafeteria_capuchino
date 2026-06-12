@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
    $image = filter_var($image, FILTER_SANITIZE_STRING);
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
-   $image_folder = '../uploaded_img/' . $image;
+   $image_folder = '../public/uploaded_img/' . $image;
 
    if (!empty($image)) {
       if ($image_size > 2000000) {
@@ -40,8 +40,8 @@ if (isset($_POST['update'])) {
          $update_image = $conn->prepare("UPDATE `products` SET image = ? WHERE id = ?");
          $update_image->execute([$image, $pid]);
          move_uploaded_file($image_tmp_name, $image_folder);
-         if (file_exists('../uploaded_img/' . $old_image)) {
-            unlink('../uploaded_img/' . $old_image);
+         if (file_exists('../public/uploaded_img/' . $old_image)) {
+            unlink('../public/uploaded_img/' . $old_image);
          }
          $message[] = '¡imagen actualizada!';
       }
@@ -63,7 +63,7 @@ if (isset($_POST['update'])) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/dashboard_style.css">
+   <link rel="stylesheet" href="../public/css/dashboard_style.css">
 
 </head>
 
@@ -87,7 +87,7 @@ if (isset($_POST['update'])) {
             <form action="" method="POST" enctype="multipart/form-data">
                <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                <input type="hidden" name="old_image" value="<?= $fetch_products['image']; ?>">
-               <img src="../uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+               <img src="../public/uploaded_img/<?= $fetch_products['image']; ?>" alt="">
                <span>actualizar nombre</span>
                <input type="text" required placeholder="ingresa el nombre del producto" name="name" maxlength="100" class="box" value="<?= $fetch_products['name']; ?>">
                <span>actualizar precio</span>
@@ -119,7 +119,7 @@ if (isset($_POST['update'])) {
    <!-- update product section ends -->
 
    <!-- custom js file link  -->
-   <script src="../js/employee_script.js"></script>
+   <script src="../public/js/employee_script.js"></script>
 
 </body>
 

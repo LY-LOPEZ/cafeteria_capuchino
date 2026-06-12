@@ -1,4 +1,4 @@
-ï»¿<?php
+<?php
 
 include '../components/connect.php';
 
@@ -25,23 +25,23 @@ if (isset($_POST['add_product'])) {
    $image = filter_var($image, FILTER_SANITIZE_STRING);
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
-   $image_folder = '../uploaded_img/' . $image;
+   $image_folder = '../public/uploaded_img/' . $image;
 
    $select_products = $conn->prepare("SELECT * FROM `products` WHERE name = ?");
    $select_products->execute([$name]);
 
    if ($select_products->rowCount() > 0) {
-      $message[] = 'Â¡el nombre del producto ya existe!';
+      $message[] = '¡el nombre del producto ya existe!';
    } else {
       if ($image_size > 2000000) {
-         $message[] = 'el tamaÃ±o de la imagen es demasiado grande';
+         $message[] = 'el tamaño de la imagen es demasiado grande';
       } else {
          move_uploaded_file($image_tmp_name, $image_folder);
 
          $insert_product = $conn->prepare("INSERT INTO `products`(name, category, price, image) VALUES(?,?,?,?)");
          $insert_product->execute([$name, $category, $price, $image]);
 
-         $message[] = 'Â¡nuevo producto aÃ±adido!';
+         $message[] = '¡nuevo producto añadido!';
       }
    }
 }
@@ -52,8 +52,8 @@ if (isset($_GET['delete'])) {
    $delete_product_image = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
    $delete_product_image->execute([$delete_id]);
    $fetch_delete_image = $delete_product_image->fetch(PDO::FETCH_ASSOC);
-   if ($fetch_delete_image && file_exists('../uploaded_img/' . $fetch_delete_image['image'])) {
-      unlink('../uploaded_img/' . $fetch_delete_image['image']);
+   if ($fetch_delete_image && file_exists('../public/uploaded_img/' . $fetch_delete_image['image'])) {
+      unlink('../public/uploaded_img/' . $fetch_delete_image['image']);
    }
    $delete_product = $conn->prepare("DELETE FROM `products` WHERE id = ?");
    $delete_product->execute([$delete_id]);
@@ -77,8 +77,8 @@ if (isset($_GET['delete'])) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../css/dashboard_style.css">
-   <link rel="stylesheet" href="../css/table.css">
+   <link rel="stylesheet" href="../public/css/dashboard_style.css">
+   <link rel="stylesheet" href="../public/css/table.css">
 
 </head>
 
@@ -91,18 +91,18 @@ if (isset($_GET['delete'])) {
    <section class="add-products">
 
       <form action="" method="POST" enctype="multipart/form-data">
-         <h3>aÃ±adir producto</h3>
+         <h3>añadir producto</h3>
          <input type="text" required placeholder="ingresa el nombre del producto" name="name" maxlength="100" class="box">
          <input type="number" min="0" max="9999999999" required placeholder="ingresa el precio del producto" name="price" onkeypress="if(this.value.length == 10) return false;" class="box">
          <select name="category" class="box" required>
-            <option value="" disabled selected>selecciona categorÃ­a --</option>
-            <option value="coffee"> cafÃ©</option>
-            <option value="fast food">comida rÃ¡pida</option>
+            <option value="" disabled selected>selecciona categoría --</option>
+            <option value="coffee"> café</option>
+            <option value="fast food">comida rápida</option>
             <option value="drinks">bebidas</option>
             <option value="desserts">postres</option>
          </select>
          <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
-         <input type="submit" value="aÃ±adir producto" name="add_product" class="btn">
+         <input type="submit" value="añadir producto" name="add_product" class="btn">
       </form>
 
    </section>
@@ -130,8 +130,8 @@ if (isset($_GET['delete'])) {
                   <th>Foto</th>
                   <th>nombre</th>
                   <th>precio</th>
-                  <th>categorÃ­a</th>
-                  <th>AcciÃ³n</th>
+                  <th>categoría</th>
+                  <th>Acción</th>
                </tr>
             </thead>
             <tbody>
@@ -143,7 +143,7 @@ if (isset($_GET['delete'])) {
                ?>
                      <tr>
                         <td><?= $fetch_products['id']; ?></td>
-                        <td><img style="height: 60px;" src="../uploaded_img/<?= $fetch_products['image']; ?>" alt=""></td>
+                        <td><img style="height: 60px;" src="../public/uploaded_img/<?= $fetch_products['image']; ?>" alt=""></td>
                         <td><?= $fetch_products['name']; ?></td>
                         <td><span>Bs.</span><?= $fetch_products['price']; ?><span></td>
                         <td><?= $fetch_products['category']; ?></td>
@@ -151,14 +151,14 @@ if (isset($_GET['delete'])) {
 
                         <td>
                            <a href="update_product.php?update=<?= $fetch_products['id']; ?>"><button><i class="fa-solid fa-pen-to-square"></i></button></a>
-                           <a href="products.php?delete=<?= $fetch_products['id']; ?>" onclick="return confirm('Â¿eliminar este producto?');"><button><i class="fa-solid fa-trash"></i></button></a>
+                           <a href="products.php?delete=<?= $fetch_products['id']; ?>" onclick="return confirm('¿eliminar este producto?');"><button><i class="fa-solid fa-trash"></i></button></a>
                         </td>
                      </tr>
 
                <?php
                   }
                } else {
-                  echo '<p class="empty">Â¡aÃºn no se han aÃ±adido productos!</p>';
+                  echo '<p class="empty">¡aún no se han añadido productos!</p>';
                }
                ?>
             </tbody>
@@ -169,7 +169,7 @@ if (isset($_GET['delete'])) {
 
    <!-- show products section ends -->
    <!-- custom js file link  -->
-   <script src="../js/employee_script.js"></script>
+   <script src="../public/js/employee_script.js"></script>
 
 </body>
 

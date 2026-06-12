@@ -1,5 +1,6 @@
 <?php
 require_once 'models/OrderModel.php';
+require_once 'components/auth.php';
 
 class OrderSuccessController {
     public function index() {
@@ -9,13 +10,7 @@ class OrderSuccessController {
             session_start();
         }
 
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-        } else {
-            $loginUrl = defined('PUBLIC_BASE') ? PUBLIC_BASE . 'login' : 'login.php';
-            header('location:' . $loginUrl);
-            exit;
-        }
+        $user_id = requireUser($conn);
 
         $orderId = filter_var($_GET['id'] ?? '', FILTER_SANITIZE_NUMBER_INT);
         $orderModel = new OrderModel();
