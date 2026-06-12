@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   min-height: 100vh;
+   margin: 0;
+   padding: 32px;
+   font-family: 'Montserrat', sans-serif;
+   color: #241a14;
+   background: #fbf8f2;
+}
+
+.invoice {
+   max-width: 860px;
+   margin: 0 auto;
+   padding: 36px;
+   background: #fff;
+   border: 1px solid rgba(92, 52, 31, .14);
+   border-radius: 8px;
+   box-shadow: 0 18px 45px rgba(55, 38, 24, .12);
+}
+
+.invoice-header {
+   display: flex;
+   justify-content: space-between;
+   gap: 24px;
+   padding-bottom: 24px;
+   border-bottom: 2px solid #5c341f;
+}
+
+.invoice-header h1 {
+   margin: 0;
+   font-size: 34px;
+   color: #5c341f;
+}
+
+.invoice-header p,
+.invoice-number span {
+   margin: 8px 0 0;
+   color: #756960;
+}
+
+.invoice-number {
+   text-align: right;
+}
+
+.invoice-number strong {
+   display: block;
+   margin-top: 6px;
+   font-size: 24px;
+   color: #241a14;
+}
+
+.invoice-grid {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 22px;
+   margin: 28px 0;
+}
+
+.invoice-grid > div,
+.invoice-items {
+   padding: 20px;
+   border: 1px solid rgba(92, 52, 31, .12);
+   border-radius: 6px;
+   background: #fff8ef;
+}
+
+h2 {
+   margin: 0 0 14px;
+   font-size: 18px;
+   color: #5c341f;
+}
+
+p {
+   margin: 8px 0;
+   line-height: 1.45;
+}
+
+.items-box {
+   line-height: 1.8;
+}
+
+.invoice-total {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   gap: 24px;
+   margin-top: 24px;
+   padding-top: 20px;
+   border-top: 1px solid rgba(92, 52, 31, .16);
+   font-size: 22px;
+}
+
+.invoice-total strong {
+   font-size: 32px;
+   color: #5c341f;
+}
+
+.invoice-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: 12px;
+   margin-top: 28px;
+}
+
+.invoice-actions button,
+.invoice-actions a {
+   display: inline-block;
+   padding: 12px 20px;
+   border: none;
+   border-radius: 4px;
+   background: linear-gradient(135deg, #5c341f, #9a6a3a);
+   color: #fff;
+   font: inherit;
+   font-weight: 700;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+   body {
+      padding: 14px;
+   }
+
+   .invoice {
+      padding: 22px;
+   }
+
+   .invoice-header,
+   .invoice-grid {
+      grid-template-columns: 1fr;
+      flex-direction: column;
+   }
+
+   .invoice-number {
+      text-align: left;
+   }
+}
+
+@media print {
+   body {
+      padding: 0;
+      background: #fff;
+   }
+
+   .invoice {
+      max-width: none;
+      border: none;
+      box-shadow: none;
+   }
+
+   .invoice-actions {
+      display: none;
+   }
+}

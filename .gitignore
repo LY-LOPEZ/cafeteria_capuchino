@@ -1,0 +1,15 @@
+# Temporary files
+*.tmp
+cart_raw.txt
+
+# Local editor state
+.vscode/*
+!.vscode/settings.json
+
+# Uploaded payment proofs generated during local tests
+public/uploaded_img/qr_pago_*
+uploaded_img/qr_pago_*
+
+# OS/editor noise
+Thumbs.db
+.DS_Store
