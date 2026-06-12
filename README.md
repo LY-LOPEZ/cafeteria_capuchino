@@ -43,7 +43,7 @@ Cafe-Shop/
 1. **Requisitos**: Instala [XAMPP](https://www.apachefriends.org/es/index.html) e inicia los servicios **Apache** y **MySQL**.
 2. **Descarga**: Copia el proyecto dentro de la carpeta `htdocs` de XAMPP (ej. `C:\xampp\htdocs\Cafe-Shop`).
    ```bash
-   git clone https://github.com/tu-usuario/Cafe-Shop.git
+   git clone https://github.com/LY-LOPEZ/cafeteria_pedidos.git
    ```
 3. **Base de Datos**: 
    - Ve a `http://localhost/phpmyadmin/`
