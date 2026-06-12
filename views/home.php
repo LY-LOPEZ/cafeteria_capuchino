@@ -32,7 +32,7 @@
             <div class="swiper-slide slide tw-grid tw-min-h-[560px] tw-items-center tw-gap-12 lg:tw-grid-cols-[1.08fr_.82fr]">
                <div class="content tw-text-center lg:tw-text-left">
                   <span class="tw-inline-flex tw-items-center tw-rounded-full tw-border tw-border-coffee-300/40 tw-bg-white/10 tw-px-5 tw-py-3 tw-text-sm tw-font-bold tw-uppercase tw-tracking-[.16em] tw-text-coffee-100 tw-backdrop-blur">Cafeter&iacute;a en Sucre con pedidos en l&iacute;nea</span>
-                  <h3 class="tw-mx-auto tw-my-7 tw-max-w-4xl tw-font-display tw-text-[4.2rem] tw-font-bold tw-leading-none tw-text-coffee-50 tw-shadow-black/40 lg:tw-mx-0 lg:tw-text-[7.8rem]">Caf&eacute;, pedidos en l&iacute;nea y pago QR.</h3>
+                  <h3 class="tw-mx-auto tw-my-7 tw-max-w-4xl tw-font-display tw-text-[4.2rem] tw-font-bold tw-leading-none tw-text-coffee-50 tw-shadow-black/40 lg:tw-mx-0 lg:tw-text-[7.8rem]">Tu café favorito, ahora en línea.</h3>
                   <p class="hero-copy tw-mx-auto tw-max-w-2xl tw-text-3xl tw-leading-relaxed tw-text-coffee-50/85 lg:tw-mx-0">Explora el men&uacute;, arma tu pedido desde la web, paga por QR y sigue el estado de tu compra hasta recibirla.</p>
                   <div class="hero-actions tw-mt-10 tw-flex tw-flex-wrap tw-items-center tw-justify-center tw-gap-5 lg:tw-justify-start">
                      <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'menu' : 'menu.php'; ?>" class="btn tw-inline-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-coffee-100 tw-px-10 tw-py-5 tw-text-xl tw-font-extrabold tw-uppercase tw-text-coffee-900 tw-shadow-cafe tw-transition hover:-tw-translate-y-1 hover:tw-bg-white">Ver men&uacute;</a>
