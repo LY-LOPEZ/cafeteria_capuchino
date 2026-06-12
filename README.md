@@ -15,6 +15,8 @@ Un sistema web completo para la gestión de pedidos de una cafetería, desarroll
 - **Facturación**: Generación de nota de venta/recibo digital.
 - **Gestión de Perfil**: Actualización de datos personales y dirección de entrega.
 
+![alt text](image-1.png)
+
 ### 🛡️ Para Administradores y Empleados
 - **Dashboard Estadístico**: Resumen de ventas, pedidos pendientes y completados.
 - **Gestión de Productos**: Añadir, editar y eliminar productos del menú.
@@ -69,7 +71,7 @@ Tras importar la base de datos, puedes usar las siguientes credenciales para pro
 ## 💻 Tecnologías Utilizadas
 
 - **Backend**: PHP (Vanilla)
-- **Base de Datos**: MySQL / MariaDB
+- **Base de Datos**: MySQL
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
 - **Servidor Local**: XAMPP
 
