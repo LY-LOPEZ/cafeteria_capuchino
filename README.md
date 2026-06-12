@@ -27,7 +27,7 @@ Un sistema web completo para la gestión de pedidos de una cafetería, desarroll
 El proyecto sigue una estructura simplificada:
 
 ```text
-Cafe-Shop/
+cafeteria_pedidos/
 ├── admin/           # Panel de control exclusivo para administradores
 ├── components/      # Componentes reutilizables (Header, Footer, etc.)
 ├── controllers/     # Lógica de las rutas y acciones del cliente
@@ -41,7 +41,7 @@ Cafe-Shop/
 ## 🛠️ Instalación Rápida (Local)
 
 1. **Requisitos**: Instala [XAMPP](https://www.apachefriends.org/es/index.html) e inicia los servicios **Apache** y **MySQL**.
-2. **Descarga**: Copia el proyecto dentro de la carpeta `htdocs` de XAMPP (ej. `C:\xampp\htdocs\Cafe-Shop`).
+2. **Descarga**: Copia el proyecto dentro de la carpeta `htdocs` de XAMPP (ej. `C:\xampp\htdocs\cafeteria_pedidos`).
    ```bash
    git clone https://github.com/LY-LOPEZ/cafeteria_pedidos.git
    ```
@@ -49,18 +49,18 @@ Cafe-Shop/
    - Ve a `http://localhost/phpmyadmin/`
    - Crea una nueva base de datos llamada `food_db`.
    - Importa el archivo `food_db.sql` que viene en la carpeta del proyecto.
-4. **Ejecución**: Abre tu navegador y ve a `http://localhost/Cafe-Shop/`.
+4. **Ejecución**: Abre tu navegador y ve a `http://localhost/cafeteria_pedidos/`.
 
 ## 🔐 Credenciales de Acceso (Prueba)
 
 Tras importar la base de datos, puedes usar las siguientes credenciales para probar los diferentes roles:
 
 - **Administrador**:
-  - URL: `http://localhost/Cafe-Shop/admin/admin_login.php`
+  - URL: `http://localhost/cafeteria_pedidos/admin/admin_login.php`
   - Usuario: `admin` | Contraseña: `admin`
   
 - **Empleado**:
-  - URL: `http://localhost/Cafe-Shop/employee/employee_login.php`
+  - URL: `http://localhost/cafeteria_pedidos/employee/employee_login.php`
   - Usuario: `empleado1` | Contraseña: `empleado`
   
 - **Cliente** (puedes registrar uno nuevo):
