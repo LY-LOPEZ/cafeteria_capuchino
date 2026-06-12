@@ -1,117 +1,77 @@
-# Coffee Shop Sucre - Sistema de pedidos en linea
+# ☕ Cafe Shop Management System
 
-Sistema web para una cafeteria en Sucre, Bolivia. Permite a clientes revisar productos, buscar en el catalogo, agregar al carrito, pagar por QR, confirmar pedidos, ver factura y seguir el estado del pedido.
+Un sistema web completo para la gestión de pedidos de una cafetería, desarrollado con **PHP, MySQL, HTML, CSS y JavaScript**. Permite a los clientes explorar el menú, realizar pedidos, pagar mediante QR y hacer seguimiento. También incluye paneles exclusivos para administradores y empleados.
 
-## Tecnologias
+![Estado del Proyecto](https://img.shields.io/badge/Estado-Completado-success)
+![Tecnologías](https://img.shields.io/badge/Tecnolog%C3%ADas-PHP%20%7C%20MySQL%20%7C%20JS-blue)
 
-- PHP
-- MySQL / MariaDB
-- XAMPP
-- HTML, CSS y JavaScript
+## 🚀 Características Principales
 
-## Arquitectura
+### 👤 Para Clientes
+- **Catálogo Interactivo**: Búsqueda de productos, categorías y vista rápida.
+- **Carrito de Compras**: Gestión de productos antes de realizar la compra (requiere inicio de sesión).
+- **Checkout y Pago QR**: Confirmación de pedido con subida de comprobante de pago por código QR.
+- **Seguimiento de Pedidos**: Ver el estado actual de los pedidos y el historial de compras.
+- **Facturación**: Generación de nota de venta/recibo digital.
+- **Gestión de Perfil**: Actualización de datos personales y dirección de entrega.
 
-```text
-Cafe-Shop-Limpio/
-|-- public/          # Entrada web y recursos publicos
-|   |-- css/
-|   |-- js/
-|   |-- images/
-|   |-- uploaded_img/
-|   `-- index.php    # Front Controller
-|-- controllers/     # Logica de las paginas del cliente
-|-- models/          # Acceso a base de datos
-|-- views/           # Vistas PHP/HTML del cliente
-|-- components/      # Header, footer y partes reutilizables
-|-- admin/           # Panel de administrador
-|-- employee/        # Panel de empleado
-`-- index.php        # Redirige a public/
-```
+### 🛡️ Para Administradores y Empleados
+- **Dashboard Estadístico**: Resumen de ventas, pedidos pendientes y completados.
+- **Gestión de Productos**: Añadir, editar y eliminar productos del menú.
+- **Gestión de Pedidos**: Actualizar el estado de los pedidos (Pendiente, En preparación, Completado).
+- **Gestión de Usuarios (Solo Admin)**: Administración de cuentas de clientes, empleados y otros administradores.
+- **Mensajes**: Bandeja de entrada para consultas de clientes.
 
-La raiz redirige automaticamente hacia `public/`.
+## 📂 Arquitectura del Proyecto
 
-## Rutas principales
-
-- Cliente: `http://localhost/ECO/Cafe-Shop-Limpio/public/home`
-- Menu: `http://localhost/ECO/Cafe-Shop-Limpio/public/menu`
-- Productos: `http://localhost/ECO/Cafe-Shop-Limpio/public/product`
-- Carrito: `http://localhost/ECO/Cafe-Shop-Limpio/public/cart`
-- Pedidos: `http://localhost/ECO/Cafe-Shop-Limpio/public/orders`
-- Login cliente: `http://localhost/ECO/Cafe-Shop-Limpio/public/login`
-- Admin: `http://localhost/ECO/Cafe-Shop-Limpio/admin/admin_login.php`
-- Empleado: `http://localhost/ECO/Cafe-Shop-Limpio/employee/employee_login.php`
-
-## Funciones del cliente
-
-- Registro e inicio de sesion.
-- Catalogo de productos.
-- Busqueda de productos.
-- Vista rapida de producto.
-- Carrito de compras protegido por login.
-- Checkout con pago por QR.
-- Registro de referencia y comprobante QR.
-- Confirmacion de pedido.
-- Factura/comprobante.
-- Seguimiento de pedido.
-- Edicion de perfil, direccion y datos de factura.
-- Contacto con la cafeteria.
-
-## Funciones del administrador
-
-- Dashboard.
-- Gestion de productos.
-- Gestion de pedidos por estado.
-- Gestion de usuarios.
-- Gestion de empleados.
-- Gestion de mensajes.
-- Factura/comprobante de pedidos.
-
-## Funciones del empleado
-
-- Dashboard propio.
-- Gestion de productos.
-- Gestion de pedidos.
-- Factura/comprobante de pedidos.
-
-## Base de datos
-
-Base de datos esperada: `food_db`.
-
-Archivo SQL principal:
+El proyecto sigue una estructura simplificada:
 
 ```text
-food_db.sql
+Cafe-Shop/
+├── admin/           # Panel de control exclusivo para administradores
+├── components/      # Componentes reutilizables (Header, Footer, etc.)
+├── controllers/     # Lógica de las rutas y acciones del cliente
+├── employee/        # Panel de control para empleados
+├── models/          # Conexión y consultas a la base de datos
+├── public/          # Carpeta pública (CSS, JS, Imágenes y vistas del cliente)
+├── views/           # Vistas adicionales y plantillas
+└── index.php        # Redirección automática a la carpeta public/
 ```
 
-El archivo `food_db.sql` crea la base `food_db`, las tablas necesarias y datos demo minimos. Las tablas operativas `cart`, `orders`, `order_items` y `messages` quedan vacias para evitar datos de prueba al clonar.
+## 🛠️ Instalación Rápida (Local)
 
-Tablas principales:
+1. **Requisitos**: Instala [XAMPP](https://www.apachefriends.org/es/index.html) e inicia los servicios **Apache** y **MySQL**.
+2. **Descarga**: Copia el proyecto dentro de la carpeta `htdocs` de XAMPP (ej. `C:\xampp\htdocs\Cafe-Shop`).
+   ```bash
+   git clone https://github.com/tu-usuario/Cafe-Shop.git
+   ```
+3. **Base de Datos**: 
+   - Ve a `http://localhost/phpmyadmin/`
+   - Crea una nueva base de datos llamada `food_db`.
+   - Importa el archivo `food_db.sql` que viene en la carpeta del proyecto.
+4. **Ejecución**: Abre tu navegador y ve a `http://localhost/Cafe-Shop/`.
 
-- `users`
-- `products`
-- `cart`
-- `orders`
-- `order_items`
-- `messages`
-- `admin`
-- `employee`
+## 🔐 Credenciales de Acceso (Prueba)
 
-Credenciales demo despues de importar:
+Tras importar la base de datos, puedes usar las siguientes credenciales para probar los diferentes roles:
 
-- Admin: usuario `admin`, contrasena `admin`
-- Empleado: usuario `empleado1`, contrasena `empleado`
-- Cliente: correo `cliente@example.com`, contrasena `admin`
+- **Administrador**:
+  - URL: `http://localhost/Cafe-Shop/admin/admin_login.php`
+  - Usuario: `admin` | Contraseña: `admin`
+  
+- **Empleado**:
+  - URL: `http://localhost/Cafe-Shop/employee/employee_login.php`
+  - Usuario: `empleado1` | Contraseña: `empleado`
+  
+- **Cliente** (puedes registrar uno nuevo):
+  - Correo: `cliente@example.com` | Contraseña: `admin`
 
-## Ejecutar en XAMPP
+## 💻 Tecnologías Utilizadas
 
-1. Abrir XAMPP.
-2. Iniciar Apache y MySQL.
-3. Clonar/copiar el proyecto en `C:\xampp\htdocs\ECO\Cafe-Shop-Limpio`.
-4. Importar `food_db.sql` desde phpMyAdmin o con MySQL.
-5. Abrir:
+- **Backend**: PHP (Vanilla)
+- **Base de Datos**: MySQL / MariaDB
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+- **Servidor Local**: XAMPP
 
-```text
-http://localhost/ECO/Cafe-Shop-Limpio/
-```
-
-El sistema redirige automaticamente a `public/`.
+---
+*Desarrollado para la gestión eficiente de cafeterías y sistemas de pedidos en línea.*
