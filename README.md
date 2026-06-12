@@ -17,12 +17,16 @@ Un sistema web completo para la gestión de pedidos de una cafetería, desarroll
 
 ![alt text](image-1.png)
 
+![alt text](image-2.png)
+
 ### 🛡️ Para Administradores y Empleados
 - **Dashboard Estadístico**: Resumen de ventas, pedidos pendientes y completados.
 - **Gestión de Productos**: Añadir, editar y eliminar productos del menú.
 - **Gestión de Pedidos**: Actualizar el estado de los pedidos (Pendiente, En preparación, Completado).
 - **Gestión de Usuarios (Solo Admin)**: Administración de cuentas de clientes, empleados y otros administradores.
 - **Mensajes**: Bandeja de entrada para consultas de clientes.
+![alt text](image-3.png)
+![alt text](image-4.png)
 
 ## 📂 Arquitectura del Proyecto
 
