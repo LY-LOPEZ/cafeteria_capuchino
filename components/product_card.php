@@ -45,7 +45,7 @@
          <input type="number" name="qty" class="qty tw-h-12 tw-w-16 tw-rounded-lg tw-border tw-border-coffee-700/10 tw-bg-coffee-50 tw-text-center tw-text-xl tw-font-medium focus:tw-border-coffee-300 focus:tw-outline-none" min="1" max="99" value="1" maxlength="2">
          <?php 
          // Another Add button next to quantity for direct action
-         renderCartAction($user_id, 'tw-flex tw-h-12 tw-items-center tw-justify-center tw-rounded-lg tw-bg-coffee-900 tw-px-4 tw-text-white tw-transition-colors hover:tw-bg-coffee-800', 'Agregar'); 
+         renderCartAction($user_id, 'product-add-btn', 'Agregar'); 
          ?>
       </div>
    </div>
