@@ -1,4 +1,7 @@
-<?php include 'components/asset_url.php'; ?>
+<?php
+include 'components/asset_url.php';
+include 'components/order_workflow.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +17,7 @@
    <main class="invoice">
       <header class="invoice-header">
          <div>
-            <h1>Coffee Shop</h1>
+            <h1>Cafeteria Capuchino</h1>
             <p>Factura / Comprobante de pedido</p>
          </div>
          <div class="invoice-number">
@@ -41,7 +44,7 @@
             <?php if ($fetch_order['payment_proof'] != '') { ?>
                <p><strong>Comprobante:</strong> <a href="<?= publicAssetUrl('uploaded_img/' . $fetch_order['payment_proof']); ?>" target="_blank">ver imagen</a></p>
             <?php } ?>
-            <p><strong>Estado:</strong> <?= $fetch_order['payment_status']; ?></p>
+            <p><strong>Estado:</strong> <?= paymentStatusLabel($fetch_order['payment_status']); ?></p>
             <p><strong>Seguimiento:</strong> <?= $fetch_order['order_status']; ?></p>
          </div>
       </section>

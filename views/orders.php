@@ -57,7 +57,7 @@
                   <div class="customer-order-status">
                      <div>
                         <span>Estado del pago</span>
-                        <strong class="<?= $fetch_orders['payment_status'] == 'completed' ? 'is-ok' : 'is-alert'; ?>"><?= $fetch_orders['payment_status']; ?></strong>
+                        <strong class="<?= $fetch_orders['payment_status'] == 'completed' ? 'is-ok' : 'is-alert'; ?>"><?= paymentStatusLabel($fetch_orders['payment_status']); ?></strong>
                      </div>
                      <div>
                         <span>Estado del pedido</span>
@@ -75,7 +75,7 @@
                         <?php } ?>
                      </div>
                   <?php } else { ?>
-                     <p class="empty">tu pedido esta pendiente de verificacion del pago QR</p>
+                     <p class="empty"><?= $fetch_orders['payment_status'] == 'rejected' ? 'tu pago fue rechazado porque no se pudo verificar el comprobante QR. Por favor revisa la referencia enviada o comunicate con la cafeteria.' : 'tu pedido esta pendiente de verificacion del pago QR'; ?></p>
                   <?php } ?>
 
                   <div class="order-actions customer-order-actions">

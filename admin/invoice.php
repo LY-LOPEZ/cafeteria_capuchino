@@ -47,7 +47,7 @@ $select_items->execute([$fetch_order['id']]);
    <main class="invoice">
       <header class="invoice-header">
          <div>
-            <h1>Coffee Shop</h1>
+            <h1>Cafeteria Capuchino</h1>
             <p>Factura / Comprobante de pedido</p>
          </div>
          <div class="invoice-number">

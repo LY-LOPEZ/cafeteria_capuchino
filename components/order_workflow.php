@@ -22,3 +22,13 @@ function normalize_order_workflow($payment_status, $order_status) {
 function can_generate_invoice($order) {
    return ($order['payment_status'] ?? '') == 'completed' && ($order['order_status'] ?? '') == 'entregado';
 }
+
+function paymentStatusLabel($status) {
+   $labels = [
+      'pending' => 'pendiente',
+      'completed' => 'aprobado',
+      'rejected' => 'rechazado',
+   ];
+
+   return $labels[$status] ?? $status;
+}

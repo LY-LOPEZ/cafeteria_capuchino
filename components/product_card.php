@@ -13,13 +13,13 @@
       <img class="tw-h-64 tw-w-full tw-object-contain tw-transition-transform tw-duration-500 group-hover:tw-scale-110" src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       
       <!-- Floating Actions (Quick View & Add to Cart) -->
-      <div class="tw-absolute tw-right-3 tw-top-3 tw-flex tw-flex-col tw-gap-2 tw-opacity-0 tw-transition-opacity tw-duration-300 group-hover:tw-opacity-100">
-         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'quick_view' : 'quick_view.php'; ?>?pid=<?= $fetch_products['id']; ?>" class="tw-flex tw-h-12 tw-w-12 tw-items-center tw-justify-center tw-rounded-full tw-bg-white/90 tw-text-xl tw-text-coffee-900 tw-shadow-sm tw-backdrop-blur tw-transition-colors hover:tw-bg-coffee-900 hover:tw-text-white" title="Vista R&aacute;pida">
+      <div class="product-card-actions tw-absolute tw-right-3 tw-top-3 tw-flex tw-flex-col tw-gap-2 tw-opacity-0 tw-transition-opacity tw-duration-300 group-hover:tw-opacity-100">
+         <a href="<?= defined('PUBLIC_BASE') ? PUBLIC_BASE . 'quick_view' : 'quick_view.php'; ?>?pid=<?= $fetch_products['id']; ?>" class="product-card-action tw-flex tw-h-12 tw-w-12 tw-items-center tw-justify-center tw-rounded-full tw-bg-white/90 tw-text-xl tw-text-coffee-900 tw-shadow-sm tw-backdrop-blur tw-transition-colors hover:tw-bg-coffee-900 hover:tw-text-white" title="Vista R&aacute;pida">
             <i class="fas fa-eye"></i>
          </a>
          <?php 
          // Customize the add to cart button using the renderCartAction helper
-         renderCartAction($user_id, 'tw-flex tw-h-12 tw-w-12 tw-items-center tw-justify-center tw-rounded-full tw-bg-white/90 tw-text-xl tw-text-coffee-900 tw-shadow-sm tw-backdrop-blur tw-transition-colors hover:tw-bg-coffee-900 hover:tw-text-white', '<i class="fas fa-cart-plus"></i>'); 
+         renderCartAction($user_id, 'product-card-action product-cart-action tw-flex tw-h-12 tw-w-12 tw-items-center tw-justify-center tw-rounded-full tw-bg-white/90 tw-text-xl tw-text-coffee-900 tw-shadow-sm tw-backdrop-blur tw-transition-colors hover:tw-bg-coffee-900 hover:tw-text-white', '<i class="fas fa-cart-plus"></i>'); 
          ?>
       </div>
    </div>

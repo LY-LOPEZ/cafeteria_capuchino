@@ -1,6 +1,7 @@
 <?php
 require_once 'models/OrderModel.php';
 require_once 'components/auth.php';
+require_once 'components/order_workflow.php';
 
 class OrdersController {
     public function index() {

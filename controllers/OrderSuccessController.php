@@ -25,7 +25,7 @@ class OrderSuccessController {
         $orderItems = $orderModel->getItemsByOrder($fetch_order['id']);
 
         $shop_whatsapp = '59171818545';
-        $whatsapp_text = 'Hola Coffee Shop, se registro el pedido #' . str_pad($fetch_order['id'], 6, '0', STR_PAD_LEFT) . '. Total Bs.' . $fetch_order['total_price'] . '. Ref. QR: ' . $fetch_order['payment_reference'] . '. Por favor revisar el detalle en el sistema.';
+        $whatsapp_text = 'Hola Cafeteria Capuchino, se registro el pedido #' . str_pad($fetch_order['id'], 6, '0', STR_PAD_LEFT) . '. Total Bs.' . $fetch_order['total_price'] . '. Ref. QR: ' . $fetch_order['payment_reference'] . '. Por favor revisar el detalle en el sistema.';
         $whatsapp_link = 'https://wa.me/' . $shop_whatsapp . '?text=' . urlencode($whatsapp_text);
 
         require_once 'views/order_success.php';

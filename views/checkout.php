@@ -76,7 +76,7 @@
                <button type="button" class="generate-qr-btn" id="generateQrBtn">generar QR de pago</button>
             </div>
             <div class="qr-payment" id="qrPaymentBox">
-               <img src="images/payment-qr.svg" alt="QR de pago generico">
+               <img src="images/payment-qr.png" alt="QR de pago">
                <p>Escanea el QR, realiza el pago por Bs.<?= $grand_total; ?> y registra la referencia.</p>
             </div>
 

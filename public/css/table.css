@@ -496,3 +496,92 @@ td img {
     max-height: 70vh;
     object-fit: contain;
 }
+
+@media (max-width: 600px) {
+	.orders-management {
+		max-width: none;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
+		width: 100%;
+	}
+
+	.orders-toolbar,
+	.orders-search,
+	.orders-search input,
+	.orders-search button {
+		width: 100%;
+	}
+
+	.orders-search input {
+		min-width: 0;
+	}
+
+	.orders-table-wrapper {
+		overflow-x: visible;
+		padding: 0;
+		width: 100%;
+	}
+
+	.orders-management .table,
+	.orders-management .table tbody,
+	.orders-management .table tr,
+	.orders-management .table td {
+		display: block;
+		width: 100%;
+	}
+
+	.orders-management .table thead {
+		display: none;
+	}
+
+	.orders-management .table tr {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		margin-bottom: 1.5rem;
+		overflow: hidden;
+	}
+
+	.orders-management .table td {
+		display: grid;
+		grid-template-columns: 105px minmax(0, 1fr);
+		gap: 10px;
+		padding: 12px;
+		text-align: left;
+		word-break: break-word;
+	}
+
+	.orders-management .table td::before {
+		content: attr(data-label);
+		position: static;
+		width: auto;
+		padding-left: 0;
+		font-size: 13px;
+		font-weight: 800;
+		text-align: left;
+	}
+
+	.orders-management .address-cell,
+	.orders-management .products-cell {
+		max-width: none;
+	}
+
+	.order-actions-cell {
+		box-shadow: none;
+		position: static;
+	}
+
+	.order-modal {
+		align-items: flex-start;
+		padding: 7rem 1rem 1rem;
+	}
+
+	.order-modal__panel {
+		max-width: none;
+		padding: 16px;
+		width: 100%;
+	}
+
+	.order-modal-actions {
+		flex-direction: column;
+	}
+}

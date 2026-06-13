@@ -17,7 +17,7 @@
       </div>
 
       <div class="box">
-         <h3>Coffee Shop Sucre <i class="fas fa-mug-hot"></i></h3>
+         <h3>Cafeteria Capuchino <i class="fas fa-mug-hot"></i></h3>
          <p>Cafeteria con sistema de pedidos en linea, pago por QR y seguimiento de pedidos.</p>
          <div class="share">
             <a href="#" class="fab fa-facebook-f"></a>
@@ -66,6 +66,6 @@
 
    </section>
 
-   <div class="credit">&copy; <?= date('Y'); ?> Coffee Shop Sucre | Sistema de pedidos en linea</div>
+   <div class="credit">&copy; <?= date('Y'); ?> Cafeteria Capuchino | Sistema de pedidos en linea</div>
 
 </footer>
