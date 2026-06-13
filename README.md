@@ -1,4 +1,4 @@
-# ☕ Cafe Shop Management System
+# ☕ Cafeteria Capuchino - Management System
 
 Un sistema web completo para la gestión de pedidos de una cafetería, desarrollado con **PHP, MySQL, HTML, CSS y JavaScript**. Permite a los clientes explorar el menú, realizar pedidos, pagar mediante QR y hacer seguimiento. También incluye paneles exclusivos para administradores y empleados.
 
