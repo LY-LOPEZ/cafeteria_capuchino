@@ -1,6 +1,7 @@
 # ☕ Cafeteria Capuchino - Management System
 
 Un sistema web completo para la gestión de pedidos de una cafetería, desarrollado con **PHP, MySQL, HTML, CSS y JavaScript**. Permite a los clientes explorar el menú, realizar pedidos, pagar mediante QR y hacer seguimiento. También incluye paneles exclusivos para administradores y empleados.
+link: http://cafepedidos.lovestoblog.com/public/home
 
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-Completado-success)
 ![Tecnologías](https://img.shields.io/badge/Tecnolog%C3%ADas-PHP%20%7C%20MySQL%20%7C%20JS-blue)
